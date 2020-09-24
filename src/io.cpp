@@ -60,23 +60,23 @@ void messageIO::readDataFromBag(const std::string &bag_name, const std::string &
 //      odom_data.push_back(tmp);
 //    }
 
-//    sensor_msgs::JointStateConstPtr odom = m.instantiate<sensor_msgs::JointState>();
-//    if (odom != NULL) {
-//      odometerData tmp;
-//      tmp.timestamp = odom->header.stamp;
-//      tmp.v_l = odom->velocity[0];
-//      tmp.v_r = odom->velocity[1];
-//      odom_data.push_back(tmp);
-//    }
-//
-    geometry_msgs::Vector3StampedConstPtr odom = m.instantiate<geometry_msgs::Vector3Stamped>();
+    sensor_msgs::JointStateConstPtr odom = m.instantiate<sensor_msgs::JointState>();
     if (odom != NULL) {
       odometerData tmp;
       tmp.timestamp = odom->header.stamp;
-      tmp.v_l = odom->vector.x;
-      tmp.v_r = odom->vector.y;
+      tmp.v_l = odom->velocity[0];
+      tmp.v_r = odom->velocity[1];
       odom_data.push_back(tmp);
     }
+
+//    geometry_msgs::Vector3StampedConstPtr odom = m.instantiate<geometry_msgs::Vector3Stamped>();
+//    if (odom != NULL) {
+//      odometerData tmp;
+//      tmp.timestamp = odom->header.stamp;
+//      tmp.v_l = odom->vector.x;
+//      tmp.v_r = odom->vector.y;
+//      odom_data.push_back(tmp);
+//    }
   }
 
   // std::cout << "laser size: " << laser_data.size() << '\n' << "odom size: " << odom_data.size() << std::endl;
